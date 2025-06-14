@@ -91,7 +91,6 @@ insert into collection (id, status, serial_number, published_title_id) values
 (38, 'IN_SERVICE', 38, (select id from published_title where isbn = '9784296105106')),
 (39, 'IN_SERVICE', 39, (select id from published_title where isbn = '9784296105113')),
 (40, 'IN_SERVICE', 40, (select id from published_title where isbn = '9784296105120')),
-(40, 'IN_SERVICE', 40, (select id from published_title where isbn = '9784296105120')),
 (41, 'IN_SERVICE', 41, (select id from published_title where isbn = '9784798127484')),
 (42, 'IN_SERVICE', 42, (select id from published_title where isbn = '9784296105137')),
 (43, 'IN_SERVICE', 43, (select id from published_title where isbn = '9784798142401')),

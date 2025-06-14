@@ -53,7 +53,7 @@ public class CollectionService {
     public CollectionWithStatus tryToCheckout(Integer collectionId, Integer memberId,
                                               LocalDate sinceDate, LocalDate dueDate) {
         // データベースに貸出レコードを挿入
-        circulationCommand.insert(collectionId, memberId, sinceDate, dueDate, CirculationStatus.IN_RENT);
+        circulationCommand.insert( memberId, collectionId, sinceDate, dueDate, CirculationStatus.IN_RENT);
 
         // 登録された貸出情報を含む蔵書状態を再取得して返す
         return reader.findById(collectionId);
