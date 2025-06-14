@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{common/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>New Circulation</title>
+</head>
+<body layout:fragment="content">
+
+<h3 class="is-3 title">New Circulation</h3>
+
+<form action="/circulations/new" method="POST" th:object="${input}">
+    <!-- 利用者（member）の選択 -->
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label for="member" class="label" th:text="#{model.Circulation.member}">Borrower</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <div class="select">
+                        <select th:field="*{memberId}" id="member" required>
+                            <option value="" th:text="#{message.na}"></option>
+                            <option th:each="member : ${members}"
+                                    th:value="${member.id}"
+                                    th:text="${#strings.concat(member.name, '（', member.email, '）')}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 所蔵（collection）の選択 -->
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label for="collection" class="label" th:text="#{model.Circulation.collection}">Collection</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <div class="select">
+                        <select th:field="*{collectionId}" id="collection" required>
+                            <option value="" th:text="#{message.na}"></option>
+                            <option th:each="collection : ${collections}"
+                                    th:value="${collection.collectionId}"
+                                    th:text="${collection.getSerialAndTitle()}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 貸出日（sinceDate）の入力 -->
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label for="sinceDate" class="label" th:text="#{model.Circulation.sinceDate}">Since Date</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input type="date" th:field="*{sinceDate}" id="sinceDate" class="input is-static" required readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返却予定日（dueDate）の入力 -->
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label for="dueDate" class="label" th:text="#{model.Circulation.dueDate}">Due Date</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input type="date" th:field="*{dueDate}" id="dueDate" class="input is-static" required readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 送信ボタン -->
+    <div class="field">
+        <div class="control">
+            <button class="button is-link" th:text="#{message.cta.submit}">Submit</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

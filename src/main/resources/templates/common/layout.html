@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="theme-light" data-theme="light" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Layout</title>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css"/>
+    <script src="/js/script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet"/>
 </head>
-<body>
+<body class="has-navbar-fixed-top pt-16">
+<nav class="navbar is-fixed-top is-dark">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+            <span class="has-text-weight-bold is-size-4">library-app</span>
+        </a>
+        <span class="is-size-4" by th:text="#{app.developer} + ' your-name'"></span>
+    </div>
 
+    <div class="navbar-menu" id="libraryNavbar">
+        <div class="navbar-start">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Collections</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" th:href="@{/collections}">List</a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Circulations</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" th:href="@{/circulations/new}">New Circulation</a>
+                    <a class="navbar-item" th:href="@{/circulations/return}">Return Circulation</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-end"></div>
+    </div>
+</nav>
+
+<main class="pt-4 container">
+    <div class="notification is-info" th:if="${flashInfo}">
+        <button class="delete"></button>
+        <span th:text="${flashInfo} + (${flashInfoArgs})"></span>
+    </div>
+
+    <div class="notification is-danger" th:if="${flashError}">
+        <button class="delete"></button>
+        <span th:text="${flashError} + (${flashErrorArgs})"></span>
+    </div>
+
+    <div layout:fragment="content"></div>
+</main>
 </body>
 </html>

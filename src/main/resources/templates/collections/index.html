@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html layout:decorate="~{common/layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Collection List</title>
 </head>
-<body>
+<body layout:fragment="content">
+
+<h3 class="is-3 title">All Collections</h3>
+
+<table class="table is-bordered is-narrow is-hoverable">
+    <thead>
+    <tr>
+        <th th:text="#{model.Collection.serialNumber}">Serial</th>
+        <th th:text="#{model.Collection.collectionStatus}">Collection Status</th>
+        <th th:text="#{model.Collection.publishedTitleName}">Title</th>
+        <th th:text="#{model.Collection.publishedTitleAuthor}">Author</th>
+        <th th:text="#{model.CollectionStatus}">Status</th>
+        <th th:text="#{model.Collection.borrowerName}">Borrower</th>
+        <th th:text="#{model.Collection.dueDate}">Since</th>
+        <th th:text="#{model.Collection.untilDate}">Until</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c : ${collections}">
+        <td align="right" th:text="${c.serialNumber}"></td>
+        <td th:text="#{|model.CollectionStatus.${c.collectionStatus}|}"></td>
+        <td th:text="${c.publishedTitleName}"></td>
+        <td th:text="${c.publishedTitleAuthor}"></td>
+        <td th:text="${c.circulationStatus} ? #{|model.CirculationStatus.${c.circulationStatus}|} : #{message.available}"></td>
+        <td th:text="${c.borrowerName} ?: #{message.na}"></td>
+        <td th:text="${c.sinceDate} ?: #{message.na}"></td>
+        <td th:text="${c.dueDate} ?: #{message.na}"></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

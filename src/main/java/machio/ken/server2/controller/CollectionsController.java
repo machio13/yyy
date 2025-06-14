@@ -1,12 +1,13 @@
 package machio.ken.server2.controller;
 
+import machio.ken.server2.model.view.CollectionWithStatus;
+import machio.ken.server2.service.CollectionService;
+import machio.ken.server2.util.CurrentTimeProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import simplex.bn25.kaiden.june.arai101892.libraryapp.model.view.CollectionWithStatus;
-import simplex.bn25.kaiden.june.arai101892.libraryapp.service.CollectionService;
-import simplex.bn25.kaiden.june.arai101892.libraryapp.util.CurrentTimeProvider;
+
 
 import java.util.List;
 

@@ -1,0 +1,10 @@
+/*
+ * テーブルの右寄せクラス
+ * このスタイルを使えば、<td>や<th>に "align-right" クラスを付けることで
+ * 右寄せが簡単に適用できます。
+ */
+
+table td.align-right,
+table th.align-right {
+    text-align: right;
+}
